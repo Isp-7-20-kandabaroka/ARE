@@ -407,7 +407,7 @@ async def start_support_session(callback_query: types.CallbackQuery, state: FSMC
         await state.update_data(user_id=callback_query.from_user.id)  # Сохраняем ID пользователя для последующего ответа
         await bot.send_message(
         callback_query.from_user.id,
-        "Пожалуйста, напишите ваш вопрос, и наш сотрудник свяжется с вами!\n\nОбязательно нажмите кнопку отменить,\nпрежде чем переходить к другим командам",
+        "Пожалуйста, напишите ваш вопрос, и наш сотрудник свяжется с вами!\n\nеЕсли вы передумали и хотите прекратить действие,\nобязательно нажмите кнопку отменить, прежде чем переходить к другим командам",
         reply_markup=generate_cancel_button()
     )
 
@@ -489,7 +489,7 @@ async def start_complaint(callback_query: types.CallbackQuery):
     await UserState.Complaint.set()
     await bot.send_message(callback_query.from_user.id, "Пожалуйста, опишите вашу проблему или предложение.\n\n"
         "Если вы хотите пожаловаться на пользователя, укажите его имя в формате @имя.\n"
-        "\n\nОбязательно нажмите кнопку отменить,\nпрежде чем переходить к другим командам",reply_markup=generate_clear_chat_button1())
+        "\n\nЕсли вы передумали и хотите прекратить действие,\nобязательно нажмите кнопку отменить,\nпрежде чем переходить к другим командам",reply_markup=generate_clear_chat_button1())
 @dp.message_handler(state=UserState.Complaint)
 async def handle_complaint(message: types.Message, state: FSMContext):
     channel_id = -1002025346514  # ID вашего канала для жалоб
